@@ -1,50 +1,43 @@
 from pyats import aetest
-from pprint import pprint
-from connectCheck import BaseTestcase, CommonSetup
 
 
-class CommonSetup(CommonSetup):
+class LinuxCommonSetup(aetest.CommonSetup):
 
     @aetest.subsection
     def check_topology_lin(self,
-                       testbed,
-                       l1_name = 'L1',
-                       l2_name = 'L2'):
+                           testbed,
+                           l1_name='L1',
+                           l2_name='L2'):
         l1 = testbed.devices[l1_name]
         l2 = testbed.devices[l2_name]
 
-        self.parent.parameters.update(l1 = l1,
-                                      l2 = l2)
-        
+        self.parent.parameters.update(l1=l1,
+                                      l2=l2)
 
     @aetest.subsection
     def establish_connections_lin(self, steps, l1, l2):
         with steps.start(f"Connecting to {l1.name}"):
-            l1.connect(mit = True, log_stdout = False)
+            l1.connect(mit=True, log_stdout=False)
 
         with steps.start(f"Connecting to {l2.name}"):
-            l2.connect(mit = True, log_stdout = False)
+            l2.connect(mit=True, log_stdout=False)
 
-    
-    @aetest.subsection
+
+class A1testcase(aetest.Testcase):
+    @aetest.setup
     def config_iface(self, steps, l1, l2):
         with steps.start(f"Configure ens3 on {l1.name}"):
             cmd = [
-                    "ip address add 192.168.1.1/24 dev ens3", 
-                    "ip link set ens3 down",
-                    "ip link set ens3 up"]
+                "ip address add 192.168.1.1/24 dev ens3",
+                "ip link set ens3 down",
+                "ip link set ens3 up"]
             l1.execute(cmd)
         with steps.start(f"Configure ens3 on {l2.name}"):
             cmd = [
-                    "ip address add 192.168.1.2/24 dev ens3", 
-                    "ip link set ens3 down",
-                    "ip link set ens3 up"]
+                "ip address add 192.168.1.2/24 dev ens3",
+                "ip link set ens3 down",
+                "ip link set ens3 up"]
             l2.execute(cmd)
-
-class CiscoCheck(BaseTestcase):
-    pass
-
-class ConfTestcase(aetest.Testcase):
     @aetest.test
     def hostname(self, steps, l1, l2):
         with steps.start(f"Check hostname of {l1.name}"):
@@ -70,7 +63,7 @@ class ConfTestcase(aetest.Testcase):
                 assert l2.ping('192.168.1.1')
             except Exception as e:
                 self.failed(f"Ping {l2.name} to {l1.name} failed")
-    
+
     @aetest.test
     def soft_install_test(self, steps, l1, l2):
         with steps.start(f"Check soft installation on {l1.name}"):
