@@ -3,9 +3,8 @@ testbed:
   credentials:
       default:
         username: admin
-        password: admin
-      enable:
-        password: cisco
+        password: P@ssw0rd
+        enable_password: wsr2020
 
 devices:
   SW1:
@@ -15,8 +14,8 @@ devices:
     connections:
       cli:
         protocol: telnet
-        ip: '192.168.1.59'
-        port: 30042
+        ip: '192.168.1.169'
+        port: 30004
   SW2:
     type: 'switch'
     os: 'ios'
@@ -24,8 +23,8 @@ devices:
     connections:
       cli:
         protocol: telnet
-        ip: '192.168.1.59'
-        port: 30041
+        ip: '192.168.1.169'
+        port: 30005
   SW3:
     type: 'switch'
     os: 'ios'
@@ -33,35 +32,35 @@ devices:
     connections:
       cli:
         protocol: telnet
-        ip: '192.168.1.59'
-        port: 30043
-  HQ1:
+        ip: '192.168.1.169'
+        port: 30006
+  RTR:
     type: 'router'
     os: 'ios'
     platform: 'iol'
     connections:
       cli:
         protocol: telnet
-        ip: '192.168.1.59'
-        port: 30039
-  BR1:
+        ip: '192.168.1.169'
+        port: 30003
+  BRANCH:
     type: 'router'
     os: 'ios'
     platform: 'iol'
     connections:
       cli:
         protocol: telnet
-        ip: '192.168.1.59'
-        port: 30037
-  FW1:
+        ip: '192.168.1.169'
+        port: 30001
+  FW:
     type: 'firewall'
     os: 'asa'
     platform: 'asav'
     connections:
       cli:
         protocol: telnet
-        ip: '192.168.1.59'
-        port: 30040
+        ip: '192.168.1.169'
+        port: 30020
 
 topology:
   SW1:
@@ -109,7 +108,7 @@ topology:
       Ethernet0/3:
         link: link-3
         type: ethernet
-  HQ1:
+  RTR:
     interfaces:
       Ethernet0/1.100:
         ipv4: 10.100.100.1/24

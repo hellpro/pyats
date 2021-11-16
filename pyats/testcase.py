@@ -1,17 +1,23 @@
 from lin_test import LinuxCommonSetup, A1testcase
-from cisco_test import CiscoCommonSetup, C1testcase
+from cisco_test import CiscoCommonSetup, C1testcase, C2testcase, C3testcase
 from pyats import aetest
 
 
-class CommonSetup(CiscoCommonSetup, LinuxCommonSetup):
+class CommonSetup(CiscoCommonSetup):
     pass
 
-
+'''
 class LinTestcase(A1testcase):
     pass
+'''
 
+class C1CiscoTestcase(C1testcase):
+    pass
 
-class CiscoTestcase(C1testcase):
+class C2CiscoTestcase(C2testcase):
+    pass
+
+class C3CiscoTestcase(C3testcase):
     pass
 
 
