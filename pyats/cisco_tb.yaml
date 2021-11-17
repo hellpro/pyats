@@ -4,7 +4,8 @@ testbed:
       default:
         username: admin
         password: P@ssw0rd
-        enable_password: wsr2020
+      enable:
+        secret: demoexam2021
 
 devices:
   SW1:
@@ -14,7 +15,7 @@ devices:
     connections:
       cli:
         protocol: telnet
-        ip: '192.168.1.169'
+        ip: '192.168.1.129'
         port: 30004
   SW2:
     type: 'switch'
@@ -23,7 +24,7 @@ devices:
     connections:
       cli:
         protocol: telnet
-        ip: '192.168.1.169'
+        ip: '192.168.1.129'
         port: 30005
   SW3:
     type: 'switch'
@@ -32,7 +33,7 @@ devices:
     connections:
       cli:
         protocol: telnet
-        ip: '192.168.1.169'
+        ip: '192.168.1.129'
         port: 30006
   RTR:
     type: 'router'
@@ -41,7 +42,7 @@ devices:
     connections:
       cli:
         protocol: telnet
-        ip: '192.168.1.169'
+        ip: '192.168.1.129'
         port: 30003
   BRANCH:
     type: 'router'
@@ -50,7 +51,7 @@ devices:
     connections:
       cli:
         protocol: telnet
-        ip: '192.168.1.169'
+        ip: '192.168.1.129'
         port: 30001
   FW:
     type: 'firewall'
@@ -59,7 +60,7 @@ devices:
     connections:
       cli:
         protocol: telnet
-        ip: '192.168.1.169'
+        ip: '192.168.1.129'
         port: 30020
 
 topology:

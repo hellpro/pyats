@@ -29,22 +29,70 @@ class CiscoCommonSetup(aetest.CommonSetup):
     @aetest.subsection
     def establish_connections_cisco(self, steps, sw1, sw2, sw3, hq1, fw1, br1):
         with steps.start(f"Connecting to {sw1.name}"):
+            try:
+                sw1.connect(mit=True, log_stdout=False)
+            except Exception as e:
+                pass
+            else:
+                pass
+            finally:
+                pass
             sw1.connect(mit=True, log_stdout=False)
 
         with steps.start(f"Connecting to {sw2.name}"):
-            sw2.connect(mit=True, log_stdout=False)
+            try:
+                sw2.connect(mit=True, log_stdout=False)
+            except Exception as e:
+                pass
+            else:
+                pass
+            finally:
+                pass
+            
 
         with steps.start(f"Connecting to {sw3.name}"):
+            try:
+                sw3.connect(mit=True, log_stdout=False)
+            except Exception as e:
+                pass
+            else:
+                pass
+            finally:
+                pass
             sw3.connect(mit=True, log_stdout=False)
 
         with steps.start(f"Connecting to {hq1.name}"):
-            hq1.connect(mit=True, log_stdout=False)
+            try:
+                hq1.connect(mit=True, log_stdout=False)
+            except Exception as e:
+                pass
+            else:
+                pass
+            finally:
+                pass
+            
 
         with steps.start(f"Connecting to {fw1.name}"):
-            fw1.connect(mit=True, log_stdout=False)
+            try:
+                fw1.connect(mit=True, log_stdout=False)
+            except Exception as e:
+                pass
+            else:
+                pass
+            finally:
+                pass
+            
 
         with steps.start(f"Connecting to {br1.name}"):
-            br1.connect(mit=True, log_stdout=False)
+            try:
+                br1.connect(mit=True, log_stdout=False)
+            except Exception as e:
+                pass
+            else:
+                pass
+            finally:
+                pass
+            
 
 
 class C1testcase(aetest.Testcase):
@@ -306,7 +354,7 @@ class C3testcase(aetest.Testcase):
     @aetest.test
     def gre(self, hq1):
         try:
-            assert '!!' hq1.ping('10.20.20.2')
+            assert '!!' in hq1.ping('10.20.20.2')
         except Exception as e:
             self.failed(f"Ping branch- {hq1.ping('10.20.20.2')}")
 
